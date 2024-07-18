@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-  <!-- we import arjs version without NFT but with marker + location based support -->
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <body style="margin : 0px; overflow: hidden;">
-    <a-scene embedded arjs>
-      <a-marker preset="hiro">
+  <head>
+    <title>AR.js with Custom Model</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs='sourceType: webcam;'>
+      <a-marker preset='hiro'>
         <a-entity
+          gltf-model="url(/public/sky.glb)"
+          scale="0.5 0.5 0.5"
           position="0 0 0"
-          scale="0.05 0.05 0.05"
-          gltf-model="https://corsproxy.io/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
         ></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
-	<script type="module" src="/huh.js"></script>
   </body>
 </html>

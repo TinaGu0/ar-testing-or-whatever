@@ -1,3 +1,5 @@
+let sceneEl = document.querySelector('a-scene');
+
 sceneEl.addEventListener("markerFound", (e) => {
     isMarkerVisible = true;
 });

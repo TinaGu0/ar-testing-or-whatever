@@ -5,6 +5,7 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
     <script src="what.js"></script>
+    <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene 
@@ -16,26 +17,44 @@
     id="scene">
       <a-marker preset='hiro'>
         <a-entity
+          id="model"
           gltf-model="url(/public/sky.glb)"
-          scale="0.5 0.5 0.5"
+          scale="x, y, z"
+          rotation="1, 1, 1"
           position="0 0 0"
-          class="clickable"
+          class="cantap"
+          xrextras-hold-drag 
+          xrextras-two-finger-rotate 
+          xrextras-pinch-scale 
           gesture-handler="minScale: 0.25; maxScale:10"
         ></a-entity>
       </a-marker>
-      <a-entity camera>
-        <a-cursor></a-cursor>
-      </a-entity>
+      <a-camera
+      id="camera"
+      raycaster="objects: .cantap"></a-camera>
+      <a-plane
+        id="ground" 
+        rotation="-90 0 0" 
+        width="1000" 
+        height="1000" 
+        material="shader: shadow" 
+        shadow>
+      </a-plane>
     </a-scene>
 <!--     <script src="huh.js"></script> -->
   </body>
 </html>
 
 <script>
-  let sceneEl = document.querySelector('a-scene');
+  let entity = document.querySelector('a-entity');
 
-sceneEl.addEventListener("onefingermove", one());
-sceneEl.addEventListener("twofingermove", two());
+
+  entity.object3D.scale.x = 0.5;
+  entity.object3D.scale.y = 0.5;
+  entity.object3D.scale.z = 0.5;
+
+/* sceneEl.addEventListener("click", one());
+// sceneEl.addEventListener("", two());
 
 sceneEl.addEventListener("markerFound", (e) => {
     isMarkerVisible = true;
@@ -44,7 +63,7 @@ sceneEl.addEventListener("markerFound", (e) => {
 sceneEl.addEventListener("markerLost", (e) => {
     isMarkerVisible = false;
 });
-
+ */
 function one(event) {
   if(isMarkerVisible) [
     el.object3D.rotation.y += 

@@ -19,11 +19,11 @@
         <a-entity
           id="model"
           gltf-model="url(/public/sky.glb)"
-          scale="x, y, z"
-          class="cantap"
           xrextras-hold-drag 
           xrextras-two-finger-rotate 
           xrextras-pinch-scale 
+          scale="1, 1, 1"
+          class="cantap"
           gesture-handler="minScale: 0.25; maxScale:10"
         ></a-entity>
       </a-marker>
@@ -32,7 +32,7 @@
       raycaster="objects: .cantap"></a-camera>
       <a-plane
         id="ground" 
-        rotation="-90 0 0" 
+        rotation="90 0 0" 
         width="1000" 
         height="1000" 
         material="shader: shadow" 
@@ -46,11 +46,11 @@
 <script>
   let entity = document.querySelector('a-entity');
 
-
-  entity.object3D.scale.x = 0.5;
+  XRExtras.AFrame.registerXrExtrasComponents()
+/*   entity.object3D.scale.x = 0.5;
   entity.object3D.scale.y = 0.5;
   entity.object3D.scale.z = 0.5;
-
+ */
 /* sceneEl.addEventListener("click", one());
 // sceneEl.addEventListener("", two());
 
@@ -62,7 +62,7 @@ sceneEl.addEventListener("markerLost", (e) => {
     isMarkerVisible = false;
 });
  */
-function one(event) {
+/* function one(event) {
   if(isMarkerVisible) [
     el.object3D.rotation.y += 
     event.detail.positionChange.x * rotationFactor,
@@ -86,5 +86,5 @@ function two(event) {
       el.object3D.scale.y = scaleFactor * initialScale.y;
       el.object3D.scale.z = scaleFactor * initialScale.z;
     }
-}
+} */
 </script>

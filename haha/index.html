@@ -24,6 +24,7 @@
           xrextras-pinch-scale 
           scale="0.5, 0.5, 0.5"
           class="cantap"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
         ></a-entity>
       </a-marker>
       <a-camera
@@ -33,7 +34,7 @@
     </a-camera>
       <a-plane
         id="ground" 
-        rotation="90 0 0" 
+        rotation="-90 0 0" 
         width="1000" 
         height="1000" 
         material="shader: shadow" 

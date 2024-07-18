@@ -1,27 +1,50 @@
-  var param = new ARCameraParam();
+import * as THREE from 'three';
+//below is for text
+//import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-  param.onload = function () {
-    var img = document.getElementById('my-image');
-    var ar = new ARController(img.width, img.height, param);
+const scene = new THREE.Scene();
 
-    // Set pattern detection mode to detect both pattern markers and barcode markers.
-    // This is more error-prone than detecting only pattern markers (default) or only barcode markers.
-    //
-    // For barcode markers, use artoolkit.AR_MATRIX_CODE_DETECTION
-    // For pattern markers, use artoolkit.AR_TEMPLATE_MATCHING_COLOR
-    //
-    ar.setPatternDetectionMode(artoolkit.AR_TEMPLATE_MATCHING_COLOR_AND_MATRIX);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
 
-    ar.addEventListener('markerNum', function (ev) {
-      console.log('got markers', markerNum);
-    });
-    ar.addEventListener('getMarker', function (ev) {
-      console.log('found marker?', ev);
-    });
-    ar.loadMarker('Data/patt.hiro', function (marker) {
-      console.log('loaded marker', marker);
-      ar.process(img);
-    });
-};
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: "#FFF" } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+scene.add(camera)
 
-  param.src = 'Data/camera_para.dat';
+const camera = new THREE.Camera();
+scene.add(camera)
+
+let source = new THREEx.ArToolkitSource({
+  sourceType: 'webcam'
+});
+
+const context = new THREEx.ArToolkitContext({
+  debug: true, 
+  detectionMode: 'mono', 
+  maxDetectionRate: 30,
+  canvasWidth: 80 * 3,
+  canvasHeight: 60 * 3,
+})
+
+const loader = new GLTFLoader()
+const skyModel = '/public/sky.glb'
+
+loader.load('/public/sky.glb', (gltf) => {
+  scene.add(gltf.scene)
+});
+console.log(cube)
+console.log(skyModel)
+window.addEventListener('resize', function() {
+  arToolkitSource.onResize(renderer.domElement)
+});
+
+function animate() {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+	renderer.render( scene, camera );
+}
+renderer.setAnimationLoop( animate );

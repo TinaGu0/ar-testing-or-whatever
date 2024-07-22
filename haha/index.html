@@ -4,7 +4,7 @@
     <title>AR.js with Custom Model</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
-    <script src="plsload.js"></script>
+    <!-- <script src="plsload.js"></script> -->
     <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
 
   </head>
@@ -15,7 +15,12 @@
     renderer="logarithmicDepthBuffer: true;"
     vr-mode-ui="enabled: false"
     gesture-detector
-    id="scene">
+    id="scene"
+    xrextras-gesture-detector 
+    xrweb
+    landing-pages
+    xrextras-runtime-error
+    xrextras-tap-recenter>
       <a-marker preset='hiro'>
         <a-entity
           id="model"
@@ -50,44 +55,4 @@
   let entity = document.querySelector('a-entity');
 
   XRExtras.AFrame.registerXrExtrasComponents()
-/*   entity.object3D.scale.x = 0.5;
-  entity.object3D.scale.y = 0.5;
-  entity.object3D.scale.z = 0.5;
- */
-/* sceneEl.addEventListener("click", one());
-// sceneEl.addEventListener("", two());
-
-sceneEl.addEventListener("markerFound", (e) => {
-    isMarkerVisible = true;
-});
-
-sceneEl.addEventListener("markerLost", (e) => {
-    isMarkerVisible = false;
-});
- */
-/* function one(event) {
-  if(isMarkerVisible) [
-    el.object3D.rotation.y += 
-    event.detail.positionChange.x * rotationFactor,
-
-    el.object3D.rotation.x +=
-    event.detail.positionChange.y * rotationFactor
-  ]
-}
-
-function two(event) {
-  if (isMarkerVisible) {
-      this.scaleFactor *=
-        1 + event.detail.spreadChange / event.detail.startSpread;
-
-      this.scaleFactor = Math.min(
-        Math.max(this.scaleFactor, this.data.minScale),
-        this.data.maxScale
-      );
-
-      el.object3D.scale.x = scaleFactor * initialScale.x;
-      el.object3D.scale.y = scaleFactor * initialScale.y;
-      el.object3D.scale.z = scaleFactor * initialScale.z;
-    }
-} */
 </script>

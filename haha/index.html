@@ -26,7 +26,9 @@
           id="model"
           gltf-model="url(/public/sky.glb)"
           xrextras-hold-drag 
-          xrextras-two-finger-rotate 
+          dragDelay = 500
+          riseHeight = 10
+          xrextras-one-finger-rotate 
           xrextras-pinch-scale 
           scale="0.5, 0.5, 0.5"
           class="cantap"
@@ -40,7 +42,7 @@
     </a-camera>
       <a-plane
         id="ground" 
-        rotation="-90 0 0" 
+        rotation="180 0 0" 
         width="1000" 
         height="1000" 
         material="shader: shadow" 

@@ -4,7 +4,7 @@
     <title>AR.js with Custom Model</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
-    <!-- <script src="plsload.js"></script> -->
+    <script src="plsload.js"></script>
     <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
 
   </head>
@@ -14,8 +14,8 @@
     arjs='sourceType: webcam;'
     renderer="logarithmicDepthBuffer: true;"
     vr-mode-ui="enabled: false"
-    gesture-detector
     id="scene"
+    gesture-detector 
     xrextras-gesture-detector 
     xrweb
     landing-pages
@@ -24,9 +24,11 @@
       <a-marker preset='hiro'>
         <a-entity
           id="model"
-          gltf-model="url(/public/sky.glb)"
+          class="model"
+          gltf-model="url(/sky.glb)"
           xrextras-hold-drag 
           xrextras-one-finger-rotate 
+          gesture-handler="factor: 10;"
           xrextras-pinch-scale 
           scale="0.5, 0.5, 0.5"
           rotation="-90 0 0" 
@@ -35,13 +37,14 @@
       </a-marker>
       <a-camera
       id="camera"
-      raycaster="objects: #model">
+      raycaster="objects: .model">
     <a-camera></a-camera>
     </a-camera>
       <a-plane
         id="ground" 
-        rotation="90 0 0" 
+        rotation="-90 0 0" 
         width="1000" 
+        length="1000"
         height="1000" 
         material="shader: shadow" 
         shadow>

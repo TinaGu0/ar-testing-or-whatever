@@ -26,13 +26,15 @@
           id="model"
           gltf-model="url(/public/sky.glb)"
           xrextras-hold-drag 
-          dragDelay = 500
-          riseHeight = 10
-          xrextras-one-finger-rotate 
+          dragDelay
+          riseHeight
+          xrextras-two-finger-rotate 
+          factor
           xrextras-pinch-scale 
           scale="0.5, 0.5, 0.5"
+          rotation="-90 0 0" 
           class="cantap"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+          animation="property: rotation; to: 0 0 0; loop: true; dur: 10000"
         ></a-entity>
       </a-marker>
       <a-camera
@@ -42,7 +44,7 @@
     </a-camera>
       <a-plane
         id="ground" 
-        rotation="180 0 0" 
+        rotation="90 0 0" 
         width="1000" 
         height="1000" 
         material="shader: shadow" 

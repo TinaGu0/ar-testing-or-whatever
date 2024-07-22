@@ -14,7 +14,6 @@
     arjs='sourceType: webcam;'
     renderer="logarithmicDepthBuffer: true;"
     vr-mode-ui="enabled: false"
-    gesture-detector
     id="scene"
     xrextras-gesture-detector 
     xrweb
@@ -24,7 +23,7 @@
       <a-marker preset='hiro'>
         <a-entity
           id="model"
-          gltf-model="url(/public/sky.glb)"
+          gltf-model="url(/sky.glb)"
           xrextras-hold-drag 
           xrextras-one-finger-rotate 
           xrextras-pinch-scale 
@@ -40,8 +39,9 @@
     </a-camera>
       <a-plane
         id="ground" 
-        rotation="90 0 0" 
+        rotation="-90 0 0" 
         width="1000" 
+        length="1000"
         height="1000" 
         material="shader: shadow" 
         shadow>
